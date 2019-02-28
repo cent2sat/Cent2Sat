@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>cent to sat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="world's smallest currency converter">
+    <meta name="keywords" content="BTC,satoshi,penny,cent,converter,lnd,c-lightning,lightning network,eclair">
+    <meta name="author" content="JackoPR1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//cent2sat.com/analytics/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+</head>
+
+<body>
+    <div class="header">
+        <h3>cent to satoshi</h3>
+        <p>world's smallest currency converter!</p>
+    </div>
+
+    <div class="clearfix">
+        <div class="box" style="background-color:#bbb">
+            <h1 class="h1">$0.01</h1>
+            <h2 class="h2">penny</h2>
+            <img src="images/cent.png" alt="penny" style="width:100px;height:100px;">
+        </div>
+
+        <div class="box" style="background-color:rgb(134, 134, 134)">
+            <h1 class="h1" id="my_id_result">...</h1>
+            <h2 class="h2">satoshi</h2>
+            <img src="images/bitcoin.png" alt="bitcoin" style="width:100px;height:100px;">
+        </div>
+    </div>
+
+<!-- Beginning of tippin.me Button 
+<div id="tippin-button" data-dest="JackoPR1"></div>
+<script src="https://tippin.me/buttons/tip.js" async defer type="text/javascript"></script>
+End of tippin.me Button -->
+
+    <div class="footer">
+    <p>put together by <a href="//twitter.com/jackopr1">@jackopr1</a></p>
+    <p>just the tip, i mean we accept <a href="https://tippin.me/@jackopr1">tips</a></p>
+    </div>
+
+    <script>
+        window.onload = function () {
+            fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
+                return data.json()
+            }).then(response => {
+                console.log(response);
+                finalValue = response * 1000000
+                roundedValue = Math.round(finalValue);
+                document.getElementById('my_id_result').innerHTML = roundedValue;
+            });
+        };
+    </script>  
+
+</body>
+
+</html>
