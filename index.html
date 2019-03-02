@@ -33,13 +33,16 @@
         </div>
     </div>
 
+<!-- Beginning of tippin.me Button --> 
+<div id="tippin-button" data-dest="JackoPR1"></div>
+<script src="https://tippin.me/buttons/tip.js" async defer type="text/javascript"></script>
+<!--  End of tippin.me Button -->
+    
     <div class="footer">
     <p>put together by <a href="//twitter.com/jackopr1">@jackopr1</a></p>
-    <p>just the tip, i mean we accept <a href="https://tippin.me/@jackopr1">tips</a></p>
     </div>
 
     <script>
-        window.onload = function () {
             fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
                 return data.json()
             }).then(response => {
@@ -48,7 +51,6 @@
                 roundedValue = Math.round(finalValue);
                 document.getElementById('my_id_result').innerHTML = roundedValue;
             });
-        };
     </script>  
 
 </body>
