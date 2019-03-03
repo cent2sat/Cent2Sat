@@ -23,7 +23,7 @@ wget https://github.com/JackoPR1/Cent2Sat/archive/master.zip
 unzip master.com
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Edit index.html in order to add features and/or functions. Edit css/style.css to change layout, colors, and fonts.
 
 ## Contributing
 
