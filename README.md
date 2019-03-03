@@ -31,7 +31,7 @@ Please read [CONTRIBUTING.md](https://github.com/jacko538/Cent2Sat/blob/master/C
 
 ## Authors
 
-* **Juan C Mendez** - *Initial work* - [jacko538](https://github.com/jacko538)
+* **Juan C Mendez** - *Initial work* - [jackopr1](https://github.com/jackopr1)
 
 See also the list of [contributors](https://github.com/jacko538/Cent2Sat/contributors) who participated in this project.
 
