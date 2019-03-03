@@ -10,13 +10,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+Perform this step is you have git installed.
 
 ```
 git clone https://github.com/JackoPR1/Cent2Sat.git
 ```
 
-And repeat
+If you do not have git installed, download the zip.
 
 ```
 wget https://github.com/JackoPR1/Cent2Sat/archive/master.zip
