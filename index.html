@@ -22,37 +22,81 @@
 
     <div class="clearfix">
         <div class="box" style="background-color:#bbb">
-            <h1 class="h1">$0.01</h1>
-            <h2 class="h2">penny</h2>
-            <img src="images/cent.png" alt="penny" style="width:100px;height:100px;">
+            <h1 class="h1" id="myTxt1">$0.01</h1>
+            <h2 class="h2" id="myTxt2">penny</h2>
+            <input type="image" src="images/usd.png" style="width:100px;height:100px;" id="myImg"
+                onclick="changeImage();changeTxt1();changeTxt2();changeURL()">
         </div>
 
         <div class="box" style="background-color:rgb(134, 134, 134)">
             <h1 class="h1" id="my_id_result">...</h1>
             <h2 class="h2">satoshi</h2>
-            <img src="images/bitcoin.png" alt="bitcoin" style="width:100px;height:100px;">
+            <img src="images/btc.png" alt="bitcoin" style="width:100px;height:100px;">
         </div>
     </div>
 
-<!-- Beginning of tippin.me Button --> 
-<div id="tippin-button" data-dest="JackoPR1"></div>
-<script src="https://tippin.me/buttons/tip.js" async defer type="text/javascript"></script>
-<!--  End of tippin.me Button -->
-    
+    <!-- Beginning of tippin.me Button -->
+    <div id="tippin-button" data-dest="JackoPR1"></div>
+    <script src="https://tippin.me/buttons/tip.js" async defer type="text/javascript"></script>
+    <!--  End of tippin.me Button -->
+
     <div class="footer">
-    <a href="https://github.com/jackopr1" class="fa fa-github"></a><a href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
+        <a href="https://github.com/jackopr1" class="fa fa-github"></a>
+        <a href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
     </div>
 
     <script>
-            fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
-                return data.json()
-            }).then(response => {
-                console.log(response);
-                finalValue = response * 1000000
-                roundedValue = Math.round(finalValue);
-                document.getElementById('my_id_result').innerHTML = roundedValue;
-            });
-    </script>  
+        fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
+            return data.json()
+        }).then(response => {
+            console.log(response);
+            finalValue = response * 1000000
+            roundedValue = Math.round(finalValue);
+            document.getElementById('my_id_result').innerHTML = roundedValue;
+        });
+    </script>
+
+    <script>
+        img_array = ['images/usd.png', 'images/gbp.png', 'images/eur.png'];
+        i = 1;
+        function changeImage() {
+            i++;
+            document.getElementById("myImg").src = img_array[i];
+            if (i == img_array.length - 1) {
+                i = -1;
+            }
+        }
+
+        txt1 = ['$0.01', '1p', '0.01€'];
+        j = 1;
+        function changeTxt1() {
+            j++;
+            document.getElementById("myTxt1").innerText = txt1[j];
+            if (j == txt1.length - 1) {
+                j = -1;
+            }
+        }
+
+        txt2 = ['penny', 'pence', 'cent'];
+        k = 1;
+        function changeTxt2() {
+            k++;
+            document.getElementById("myTxt2").innerText = txt2[k];
+            if (k == txt2.length - 1) {
+                k = -1;
+            }
+        }
+
+        // txtURL = ['https://blockchain.info/tobtc?currency=USD&value=1', 'https://blockchain.info/tobtc?currency=GBP&value=1', 'https://blockchain.info/tobtc?currency=EUR&value=1'];
+        // l = 1;
+        // function changeURL() {
+        //     l++;
+        //     document.getElementById("myURL").innerText = txtURL[l];
+        //     if (l == txtURL.length - 1) {
+        //         l = -1;
+        //     }
+        // }
+    </script>
 
 </body>
 
