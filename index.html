@@ -2,8 +2,7 @@
 <html>
 
 <head>
-
-    <title>cent to sat</title>
+    <title>cent2sat</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="world's smallest currency converter">
@@ -11,6 +10,8 @@
     <meta name="author" content="JackoPR1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="https://cent2sat.com/images/favicon.png" />
 
 </head>
 
@@ -19,32 +20,26 @@
         <h3>cent to satoshi</h3>
         <p>world's smallest currency converter!</p>
     </div>
-
     <div class="clearfix">
         <div class="box" style="background-color:#bbb">
-            <h1 class="h1" id="myTxt1">$0.01</h1>
-            <h2 class="h2" id="myTxt2">penny</h2>
-            <input type="image" src="images/usd.png" style="width:100px;height:100px;" id="myImg"
-                onclick="changeImage();changeTxt1();changeTxt2();changeURL()">
+            <h1 class="h1">$0.01</h1>
+            <h2 class="h2">USD</h2>
+            <input type="image" src="images/usd.png" style="width:100px;height:100px;outline:none;box-shadow:none"
+                onclick="parent.location='gbp'">
         </div>
-
-        <div class="box" style="background-color:rgb(134, 134, 134)">
+        <div class="box" style="background-color:#ccc">
             <h1 class="h1" id="my_id_result">...</h1>
             <h2 class="h2">satoshi</h2>
             <img src="images/btc.png" alt="bitcoin" style="width:100px;height:100px;">
         </div>
     </div>
 
-    <div id="tippin-button" data-dest="JackoPR1"></div>
-    <script src="https://tippin.me/buttons/tip.js" async defer type="text/javascript"></script>
-
     <div class="footer">
-        <a href="https://github.com/JackoPR1" class="fa fa-github"></a>
-        <a href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/JackoPR1/Cent2Sat"
+            class="fa fa-github"></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
     </div>
-
     <script>
-     // fetch('myURL').then(data => {
         fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
             return data.json()
         }).then(response => {
@@ -54,49 +49,6 @@
             document.getElementById('my_id_result').innerHTML = roundedValue;
         });
     </script>
-
-    <script>
-        img_array = ['images/usd.png', 'images/gbp.png', 'images/eur.png'];
-        i = 1;
-        function changeImage() {
-            i++;
-            document.getElementById("myImg").src = img_array[i];
-            if (i == img_array.length - 1) {
-                i = -1;
-            }
-        }
-
-        txt1 = ['$0.01', '1p', '0.01€'];
-        j = 1;
-        function changeTxt1() {
-            j++;
-            document.getElementById("myTxt1").innerText = txt1[j];
-            if (j == txt1.length - 1) {
-                j = -1;
-            }
-        }
-
-        txt2 = ['penny', 'pence', 'cent'];
-        k = 1;
-        function changeTxt2() {
-            k++;
-            document.getElementById("myTxt2").innerText = txt2[k];
-            if (k == txt2.length - 1) {
-                k = -1;
-            }
-        }
-
-        // txtURL = ['https://blockchain.info/tobtc?currency=USD&value=1', 'https://blockchain.info/tobtc?currency=GBP&value=1', 'https://blockchain.info/tobtc?currency=EUR&value=1'];
-        // l = 1;
-        // function changeURL() {
-        //     l++;
-        //     document.getElementById("myURL").innerText = txtURL[l];
-        //     if (l == txtURL.length - 1) {
-        //         l = -1;
-        //     }
-        // }
-    </script>
-
 </body>
 
 </html>
