@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>cent2sat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="world's smallest currency converter">
+    <meta name="keywords" content="BTC,satoshi,pence,cent,converter,lnd,c-lightning,lightning network,eclair">
+    <meta name="author" content="JackoPR1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="https://cent2sat.com/images/favicon.png" />
+</head>
+
+<body>
+    <div class="header">
+        <h3>jiao to satoshi</h3>
+        <p>world's smallest currency converter!</p>
+    </div>
+    <div class="clearfix">
+        <div class="box" style="background-color:#bbb">
+            <h1 class="h1">¥0.1</h1>
+            <h2 class="h2">CNY</h2>
+            <input type="image" src="images/cny.png" style="width:100px;height:100px;outline:none;box-shadow:none"
+                onclick="parent.location='cad'">
+        </div>
+        <div class="box" style="background-color:#ccc">
+            <h1 class="h1" id="my_id_result">...</h1>
+            <h2 class="h2">satoshi</h2>
+            <img src="images/btc.png" alt="bitcoin" style="width:100px;height:100px;">
+        </div>
+    </div>
+    <div class="footer">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/JackoPR1/Cent2Sat"
+            class="fa fa-github"></a>
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
+    </div>
+    <script>
+        fetch('https://blockchain.info/tobtc?currency=CNY&value=10').then(data => {
+            return data.json()
+        }).then(response => {
+            console.log(response);
+            finalValue = response * 1000000
+            roundedValue = Math.round(finalValue);
+            document.getElementById('my_id_result').innerHTML = roundedValue;
+        });
+    </script>
+</body>
+
+</html>
