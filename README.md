@@ -1,4 +1,4 @@
-# Cent 2 Satoshi
+# Cent2Sat
 
 Come and see how many satoshis there are in a penny.
 
