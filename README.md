@@ -33,11 +33,11 @@ Please read [CONTRIBUTING.md](https://github.com/cent2sat/Cent2Sat/blob/master/C
 
 * **cent2sat** - *Initial work* - [cent2sat](https://github.com/cent2sat)
 
-See also the list of [contributors](https://github.com/jacko538/Cent2Sat/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/cent2sat/Cent2Sat/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNUGPLv3 License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
