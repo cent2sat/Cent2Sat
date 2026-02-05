@@ -1,54 +1,73 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cent2sat</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="world's smallest currency converter">
-    <meta name="keywords" content="BTC,satoshi,pence,cent,converter,lnd,c-lightning,lightning network,eclair">
-    <meta name="author" content="JackoPR1">
-    <meta name="theme-color" content="#f7931a"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="https://cent2sat.com/images/favicon.png" />
-    <html lang="en">
+    <link rel="stylesheet" href="style.css"> <!-- Link to original or modernized CSS -->
 </head>
-
 <body>
-    <div class="header">
-        <h3>penny to satoshi</h3>
-        <p>world's smallest currency converter!</p>
-    </div>
-    <div class="clearfix">
-        <div class="box" style="background-color:#bbb">
-            <h1 class="h1">$0.01</h1>
-            <h2 class="h2">USD</h2>
-            <input type="image" src="images/usd.png" style="width:100px;height:100px;outline:none;box-shadow:none"
-                onclick="parent.location='eur.html'">
-        </div>
-        <div class="box" style="background-color:#ccc">
-            <h1 class="h1" id="my_id_result">...</h1>
-            <h2 class="h2">satoshi</h2>
-            <input type="image" src="images/btc.png" style="width:100px;height:100px;outline:none;box-shadow:none" onClick="alert('NEVER!');">
-        </div>
-    </div>
-    <div class="footer">
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/JackoPR1/Cent2Sat"
-            class="fa fa-github"></a>
-        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/JackoPR1" class="fa fa-twitter"></a>
-    </div>
+    <pre id="display">
+# cent2sat
+### cent to satoshi
+World's smallest currency converter!
+(Click on coin for next currency)
+    </pre>
+
     <script>
-        fetch('https://blockchain.info/tobtc?currency=USD&value=1').then(data => {
-            return data.json()
-        }).then(response => {
-            console.log(response);
-            finalValue = response * 1000000
-            roundedValue = Math.round(finalValue);
-            document.getElementById('my_id_result').innerHTML = roundedValue;
+        const currencies = [
+            { code: 'USD', symbol: '$', unit: 0.01 },
+            { code: 'EUR', symbol: '€', unit: 0.01 },
+            { code: 'GBP', symbol: '£', unit: 0.01 },
+            { code: 'CAD', symbol: '$', unit: 0.01 },
+            { code: 'CNY', symbol: '¥', unit: 0.01 },
+            { code: 'JPY', symbol: '¥', unit: 1 }  // JPY uses whole yen as the "small unit" since no cents
+        ];
+
+        let currentIndex = 0;
+        let prices = {};
+
+        const displayElement = document.getElementById('display');
+
+        async function fetchPrices() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,eur,gbp,cad,cny,jpy');
+                if (!response.ok) throw new Error('API error');
+                prices = await response.json();
+                updateDisplay();
+            } catch (error) {
+                displayElement.textContent += 'Error loading prices. Please refresh.\n';
+            }
+        }
+
+        function calculateSats(currency) {
+            const price = prices.bitcoin[currency.code.toLowerCase()];
+            if (!price) return 'N/A';
+            const sats = Math.round(currency.unit / price * 100_000_000);
+            return sats;
+        }
+
+        function updateDisplay() {
+            const currency = currencies[currentIndex];
+            const sats = calculateSats(currency);
+            const unitStr = currency.unit.toFixed(currency.code === 'JPY' ? 0 : 2);
+            displayElement.textContent = `
+# cent2sat
+### cent to satoshi
+World's smallest currency converter!
+(Click on coin for next currency)
+# ${currency.symbol}${unitStr} ## ${currency.code} # ${sats} ## Satoshi
+            `;
+        }
+
+        // Cycle currencies on click (attach to the whole pre for simplicity; original likely targets "coin")
+        displayElement.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currencies.length;
+            updateDisplay();
         });
+
+        // Initial fetch
+        fetchPrices();
     </script>
 </body>
-
 </html>
